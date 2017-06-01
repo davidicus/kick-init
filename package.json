@@ -1,0 +1,9 @@
+{
+  "name": "bp-cli",
+  "version": "0.0.1",
+  "description": "cli tool for installing project starters",
+  "main": "index.js",
+  "repository": "https://github.com/davidicus/bp-cli.git",
+  "author": "David Conner <david@david-conner.com>",
+  "license": "MIT"
+}
