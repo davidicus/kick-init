@@ -4,6 +4,16 @@
   "description": "cli tool for installing project starters",
   "main": "index.js",
   "repository": "https://github.com/davidicus/bp-cli.git",
-  "author": "David Conner <david@david-conner.com>",
+  "author": {
+    "name": "David Conner",
+    "email": "david@david-conner.com",
+    "url": "https://github.com/davidicus/"
+  },
+  "bin": {
+    "reaper": "cli.js"
+  },
+  "engines": {
+    "node": ">=7"
+  },
   "license": "MIT"
 }
