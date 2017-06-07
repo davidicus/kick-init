@@ -21,6 +21,7 @@ const help = `
   reaper [repo] [flag]     generate the [repo] starter project in the current directory
 
   Options:
+  -c, --clone              specify a random repo to clone
   -h, --help               print help menu
   -l, --list               list starter repo options
   -r, --remote             create a remote repo for this project
@@ -42,7 +43,7 @@ const argsParser = (args) => {
   //define the default info object
   let info = {
     clone: repoList.repos.a,
-    local: process.cwd(),
+    local: path.join(process.cwd(), "/test"),
     remote: false
   };
 
@@ -73,10 +74,10 @@ const argsParser = (args) => {
         info = null;
         break;
       case '-c':
-        info.clone = args[2];
+        info.clone = args[1];
         break;
       case '--clone':
-        info.clone = args[2];
+        info.clone = args[1];
         break;
       case '-h':
         console.log(help);
@@ -104,7 +105,7 @@ const argsParser = (args) => {
         }
     }
   });
-
+  console.log(info);
   return info;
 };
 
