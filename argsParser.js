@@ -9,6 +9,7 @@ const configPath = path.join((process.env.HOME || process.env.HOMEPATH || proces
 //check for config file. Use default if none found
 const repoList = (fs.existsSync(configPath)) ? require(configPath) : require('./repoInfo.json');
 
+
 //output for list flag
 const repos = `
   Starter Repo List:
@@ -64,7 +65,7 @@ const argsParser = (args) => {
 
   //parse each argument
   args.map(arg => {
-    console.log("test", repoList.repos[arg])
+    
     // if argument is passed serve up appropriate object
     switch (arg) {
       case '-l':
