@@ -2,5 +2,5 @@
 'use strict';
 
 console.log("keyyyyaaaaaa!!");
-const kick-init = require('.');
-kick-init(process.argv.slice(2));
+const kickInit = require('.');
+kickInit(process.argv.slice(2));

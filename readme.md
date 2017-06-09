@@ -11,7 +11,7 @@
 
 
 ##Usage
-Drastically reduce the time it take to spin up a new project. Even with a starter boilerplate the time you spend setting it up for a new project can add up. With kick-init a single command will have your starter project up and running in under a minute.   
+Drastically reduce the time it take to spin up a new project. Even with a starter boilerplate the time you spend setting it up for a new project can add up. With kick-init a single command will have your starter project up and running in a matter of minutes.   
 
 
 ## Install
