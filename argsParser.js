@@ -36,7 +36,7 @@ const help = `
   -r, --remote             create a remote repo for this project
   -v, --version            get current version of kick-init package
 
-  [repo]                   specify the repo to clone, defaults to "a"
+  [repo]                   specify the repo to clone, defaults to first one
 
   Starter Repo List:
   ${rawRepos}
