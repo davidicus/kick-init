@@ -11,6 +11,7 @@
 
 
 ##Usage
+
 Drastically reduce the time it take to spin up a new project. Even with a starter boilerplate the time you spend setting it up for a new project can add up. With kick-init a single command will have your starter project up and running in a matter of minutes.   
 
 
@@ -58,17 +59,17 @@ $ kick --help
 
 //.kickconfig.json
 
-{
-  "repos": {
-    "a": "https://github.com/davidicus/react-app-starter.git",
-    "b": "https://github.com/davidicus/build-ignore-test.git",
-    "z": "https://github.com/davidicus/build-ignore-test.git"
-  },
-  "github": {
-    "token": "your-token",
-    "username": "yourUserName"
+  {
+    "repos": {
+      "a": "https://github.com/davidicus/react-app-starter.git",
+      "b": "https://github.com/davidicus/build-ignore-test.git",
+      "z": "https://github.com/davidicus/build-ignore-test.git"
+    },
+    "github": {
+      "token": "your-token",
+      "username": "yourUserName"
+    }
   }
-}
 
 ```
 
