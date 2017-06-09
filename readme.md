@@ -9,7 +9,7 @@
 # kick-init  [![Build Status](https://travis-ci.org/davidicus/awesome-project.svg?branch=master)](https://travis-ci.org/davidicus/awesome-project)
 
 > Give your new project a kick!
-
+.
 
 ##What it do
 
