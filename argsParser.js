@@ -3,9 +3,10 @@
 const fs = require('fs');
 const path = require('path');
 
+//configuration path
 const configPath = path.join((process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE), '/.reaperconfig.json');
 
-// const setConfig = require('./setConfig');
+//check for config file. Use default if none found
 const repoList = (fs.existsSync(configPath)) ? require(configPath) : require('./repoInfo.json');
 
 //output for list flag
@@ -36,14 +37,14 @@ const help = `
 //regex checking for "-r"
 const regex = /^-r/g;
 
-let configFile = false;
+// let configFile = false;
 
 const argsParser = (args) => {
 
   //define the default info object
   let info = {
     clone: repoList.repos.a,
-    local: path.join(process.cwd(), "/test"),
+    local: process.cwd(),
     remote: false
   };
 
@@ -63,6 +64,7 @@ const argsParser = (args) => {
 
   //parse each argument
   args.map(arg => {
+
     // if argument is passed serve up appropriate object
     switch (arg) {
       case '-l':
@@ -90,7 +92,36 @@ const argsParser = (args) => {
       case 'a':
         break;
       case 'b':
-        info.clone = repoList.repos.b;
+        if (repoList.repos.b) {
+          info.clone = repoList.repos.b;
+        } else {
+          console.log(`ERROR: ${arg} is not a boilerplate.`);
+          throw new Error;
+        }
+        break;
+      case 'c':
+        if (repoList.repos.b) {
+          info.clone = repoList.repos.b;
+        } else {
+          console.log(`ERROR: ${arg} is not a boilerplate.`);
+          throw new Error;
+        }
+        break;
+      case 'd':
+        if (repoList.repos.b) {
+          info.clone = repoList.repos.b;
+        } else {
+          console.log(`ERROR: ${arg} is not a boilerplate.`);
+          throw new Error;
+        }
+        break;
+      case 'e':
+        if (repoList.repos.b) {
+          info.clone = repoList.repos.b;
+        } else {
+          console.log(`ERROR: ${arg} is not a boilerplate.`);
+          throw new Error;
+        }
         break;
       case '-r':
         info.remote = true;
@@ -105,7 +136,7 @@ const argsParser = (args) => {
         }
     }
   });
-  console.log(info);
+  // console.log(info);
   return info;
 };
 
