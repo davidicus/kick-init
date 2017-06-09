@@ -100,24 +100,24 @@ const argsParser = (args) => {
         }
         break;
       case 'c':
-        if (repoList.repos.b) {
-          info.clone = repoList.repos.b;
+        if (repoList.repos.c) {
+          info.clone = repoList.repos.c;
         } else {
           console.log(`ERROR: ${arg} is not a boilerplate.`);
           throw new Error;
         }
         break;
       case 'd':
-        if (repoList.repos.b) {
-          info.clone = repoList.repos.b;
+        if (repoList.repos.d) {
+          info.clone = repoList.repos.d;
         } else {
           console.log(`ERROR: ${arg} is not a boilerplate.`);
           throw new Error;
         }
         break;
       case 'e':
-        if (repoList.repos.b) {
-          info.clone = repoList.repos.b;
+        if (repoList.repos.e) {
+          info.clone = repoList.repos.e;
         } else {
           console.log(`ERROR: ${arg} is not a boilerplate.`);
           throw new Error;

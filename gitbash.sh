@@ -22,17 +22,17 @@ git clone "$repo" "$dest";
 #remove git history from starter repo
 rm  -r -f ".git";
 
-#install dependencies
-npm install;
-
 #initialize new git project
 git init;
+
+#install dependencies
+npm install;
 
 #add files to git
 git add .;
 
 #add first commit
-git commit -m "first commit";
+git commit -m ":beers: first commit <3 Davidicus";
 
 
 
@@ -45,10 +45,10 @@ if [ "$remote" = true ] ; then
 
   #create remote repo
   curl -u "$token:x-oauth-basic" https://api.github.com/user/repos -d "{\"name\":\"$project_name\"}";
+
+  #add remote repo
+  git remote add origin "http://github.com/$username/$project_name.git";
+
+  #push first commit
+  git push origin master;
 fi
-
-#add remote repo
-git remote add origin "http://github.com/$username/$project_name.git";
-
-#push first commit
-git -u push origin master;
