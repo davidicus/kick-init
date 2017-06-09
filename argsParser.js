@@ -2,6 +2,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const pj = ('./package.json');
 
 //configuration path
 const configPath = path.join((process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE), '/.kickconfig.json');
@@ -9,13 +10,19 @@ const configPath = path.join((process.env.HOME || process.env.HOMEPATH || proces
 //check for config file. Use default if none found
 const repoList = (fs.existsSync(configPath)) ? require(configPath) : require('./repoInfo.json');
 
+//check package version
+const version = require("./package.json").version;
+
+//get repo urls with property name
+const rawRepos = Object.keys(repoList.repos).map(repo => {
+  return `${repo}. ${repoList.repos[repo]}`;
+}).toString().replace(/,/g, "\n  ");
 
 //output for list flag
 const repos = `
   Starter Repo List:
-  a: ${repoList.repos.a}
-  b: ${repoList.repos.b}
-`;
+  ${rawRepos}
+`
 
 //output for help flag
 const help = `
@@ -27,18 +34,16 @@ const help = `
   -h, --help               print help menu
   -l, --list               list starter repo options
   -r, --remote             create a remote repo for this project
+  -v, --version            get current version of kick-init package
 
   [repo]                   specify the repo to clone, defaults to "a"
 
   Starter Repo List:
-  a: ${repoList.repos.a}
-  b: ${repoList.repos.b}
+  ${rawRepos}
 `;
 
 //regex checking for "-r"
 const regex = /^-r/g;
-
-// let configFile = false;
 
 const argsParser = (args) => {
 
@@ -57,17 +62,19 @@ const argsParser = (args) => {
     return info;
   }
 
-  //check if there are more than one argument and then make sure it is -r flag
-  if (length > 1 && !regex.exec(args[length - 1]) && !args[0].includes('-c')) {
-    console.log('ERROR: The last argument must either be the "-r" or "--remote" flag');
-    throw new Error;
-  }
-
   //parse each argument
-  args.map(arg => {
-    
+  args.map((arg, i) => {
+
     // if argument is passed serve up appropriate object
     switch (arg) {
+      case '-v':
+        console.log(pj.version);
+        info = null;
+        break;
+      case '--version':
+        console.log(pj.version);
+        info = null;
+        break;
       case '-l':
         console.log(repos);
         info = null;
@@ -77,7 +84,7 @@ const argsParser = (args) => {
         info = null;
         break;
       case '-c':
-        info.clone = args[1];
+        info.clone = args[i + 1];
         break;
       case '--clone':
         info.clone = args[1];
@@ -90,40 +97,6 @@ const argsParser = (args) => {
         console.log(help);
         info = null;
         break;
-      case 'a':
-        break;
-      case 'b':
-        if (repoList.repos.b) {
-          info.clone = repoList.repos.b;
-        } else {
-          console.log(`ERROR: ${arg} is not a boilerplate.`);
-          throw new Error;
-        }
-        break;
-      case 'c':
-        if (repoList.repos.c) {
-          info.clone = repoList.repos.c;
-        } else {
-          console.log(`ERROR: ${arg} is not a boilerplate.`);
-          throw new Error;
-        }
-        break;
-      case 'd':
-        if (repoList.repos.d) {
-          info.clone = repoList.repos.d;
-        } else {
-          console.log(`ERROR: ${arg} is not a boilerplate.`);
-          throw new Error;
-        }
-        break;
-      case 'e':
-        if (repoList.repos.e) {
-          info.clone = repoList.repos.e;
-        } else {
-          console.log(`ERROR: ${arg} is not a boilerplate.`);
-          throw new Error;
-        }
-        break;
       case '-r':
         info.remote = true;
         break;
@@ -134,13 +107,13 @@ const argsParser = (args) => {
         if (repoList.repos[arg]) {
           info.clone = repoList.repos[arg];
         }
-        else if (!arg.includes('https')) {
+        else if (!arg.includes('://')) {
           console.log(`ERROR: ${arg} is not valid argument.`);
           throw new Error;
         }
     }
   });
-  // console.log(info);
+  console.log(info);
   return info;
 };
 
