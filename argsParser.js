@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 
 //configuration path
-const configPath = path.join((process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE), '/.reaperconfig.json');
+const configPath = path.join((process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE), '/.kickconfig.json');
 
 //check for config file. Use default if none found
 const repoList = (fs.existsSync(configPath)) ? require(configPath) : require('./repoInfo.json');
@@ -19,7 +19,7 @@ const repos = `
 //output for help flag
 const help = `
   Usage:
-  reaper [repo] [flag]     generate the [repo] starter project in the current directory
+  kick [repo] [flag]     generate the [repo] starter project in the current directory
 
   Options:
   -c, --clone              specify a random repo to clone
@@ -64,7 +64,7 @@ const argsParser = (args) => {
 
   //parse each argument
   args.map(arg => {
-
+    console.log("test", repoList.repos[arg])
     // if argument is passed serve up appropriate object
     switch (arg) {
       case '-l':
@@ -130,7 +130,10 @@ const argsParser = (args) => {
         info.remote = true;
         break;
       default:
-        if (!arg.includes('https')) {
+        if (repoList.repos[arg]) {
+          info.clone = repoList.repos[arg];
+        }
+        else if (!arg.includes('https')) {
           console.log(`ERROR: ${arg} is not valid argument.`);
           throw new Error;
         }

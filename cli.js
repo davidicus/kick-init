@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 'use strict';
 
-console.log("BAAAAAAAAAAAA!");
-const bpCli = require('.');
-bpCli(process.argv.slice(2));
+console.log("keyyyyaaaaaa!!");
+const kick-init = require('.');
+kick-init(process.argv.slice(2));
