@@ -1,9 +1,9 @@
 {
-  "name": "bp-cli",
+  "name": "kick-init",
   "version": "0.0.1",
-  "description": "cli tool for installing project starters",
+  "description": "cli tool for getting your new project a kick start!",
   "main": "index.js",
-  "repository": "https://github.com/davidicus/bp-cli.git",
+  "repository": "https://github.com/davidicus/kick-starter.git",
   "author": {
     "name": "David Conner",
     "email": "david@david-conner.com",

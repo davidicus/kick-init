@@ -3,9 +3,10 @@
 const fs = require('fs');
 const path = require('path');
 
-const configPath = path.join((process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE), '/.reaperconfig.json');
+//configuration path
+const configPath = path.join((process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE), '/.kickconfig.json');
 
-// const setConfig = require('./setConfig');
+//check for config file. Use default if none found
 const repoList = (fs.existsSync(configPath)) ? require(configPath) : require('./repoInfo.json');
 
 //output for list flag
@@ -18,9 +19,10 @@ const repos = `
 //output for help flag
 const help = `
   Usage:
-  reaper [repo] [flag]     generate the [repo] starter project in the current directory
+  kick [repo] [flag]     generate the [repo] starter project in the current directory
 
   Options:
+  -c, --clone              specify a random repo to clone
   -h, --help               print help menu
   -l, --list               list starter repo options
   -r, --remote             create a remote repo for this project
@@ -35,7 +37,7 @@ const help = `
 //regex checking for "-r"
 const regex = /^-r/g;
 
-let configFile = false;
+// let configFile = false;
 
 const argsParser = (args) => {
 
@@ -62,6 +64,7 @@ const argsParser = (args) => {
 
   //parse each argument
   args.map(arg => {
+    console.log("test", repoList.repos[arg])
     // if argument is passed serve up appropriate object
     switch (arg) {
       case '-l':
@@ -73,10 +76,10 @@ const argsParser = (args) => {
         info = null;
         break;
       case '-c':
-        info.clone = args[2];
+        info.clone = args[1];
         break;
       case '--clone':
-        info.clone = args[2];
+        info.clone = args[1];
         break;
       case '-h':
         console.log(help);
@@ -89,7 +92,36 @@ const argsParser = (args) => {
       case 'a':
         break;
       case 'b':
-        info.clone = repoList.repos.b;
+        if (repoList.repos.b) {
+          info.clone = repoList.repos.b;
+        } else {
+          console.log(`ERROR: ${arg} is not a boilerplate.`);
+          throw new Error;
+        }
+        break;
+      case 'c':
+        if (repoList.repos.c) {
+          info.clone = repoList.repos.c;
+        } else {
+          console.log(`ERROR: ${arg} is not a boilerplate.`);
+          throw new Error;
+        }
+        break;
+      case 'd':
+        if (repoList.repos.d) {
+          info.clone = repoList.repos.d;
+        } else {
+          console.log(`ERROR: ${arg} is not a boilerplate.`);
+          throw new Error;
+        }
+        break;
+      case 'e':
+        if (repoList.repos.e) {
+          info.clone = repoList.repos.e;
+        } else {
+          console.log(`ERROR: ${arg} is not a boilerplate.`);
+          throw new Error;
+        }
         break;
       case '-r':
         info.remote = true;
@@ -98,13 +130,16 @@ const argsParser = (args) => {
         info.remote = true;
         break;
       default:
-        if (!arg.includes('https')) {
+        if (repoList.repos[arg]) {
+          info.clone = repoList.repos[arg];
+        }
+        else if (!arg.includes('https')) {
           console.log(`ERROR: ${arg} is not valid argument.`);
           throw new Error;
         }
     }
   });
-
+  // console.log(info);
   return info;
 };
 
