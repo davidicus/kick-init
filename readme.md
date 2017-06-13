@@ -70,6 +70,7 @@ $ kick --help
 
 ```
 
+
 ##Config
 
 In order to get the full benefits of kick-init add a .kickconfig.json file to your root directory. There are two sections of the config. The **repos** property will list out all repos available to clone. The second property is **github**. Here you will list your username and personal access token. Check out how to get a personal access token [here](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/). Without the config file you will not be able to create a remote repo but can still start a local project. Get ta kickin!
@@ -93,6 +94,7 @@ In order to get the full benefits of kick-init add a .kickconfig.json file to yo
   }
 
 ```
+
 
 ##Coming Soon!
 - Support for github enterprise
