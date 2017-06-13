@@ -34,6 +34,7 @@ const help = `
 
   Options:
   -c, --clone              specify a random repo to clone
+  -e, --enterprise         use enterprise github instance
   -h, --help               print help menu
   -l, --list               print starter repo options
   -r, --remote             create a remote repo for this project
@@ -56,7 +57,8 @@ const argsParser = (args) => {
     clone: repoList.repos[Object.keys(repoList.repos)[0]],
     local: process.cwd(),
     remote: false,
-    verbose: false
+    verbose: false,
+    enterprise: false
   };
 
   //check if there are any arguments
@@ -73,6 +75,15 @@ const argsParser = (args) => {
     // if argument is passed serve up appropriate object
     switch (arg) {
 
+      //use enterprise instance
+      case '-e':
+        info.enterprise = true;
+        break;
+
+      //use enterprise instance
+      case '--enterprise':
+        info.enterprise = true;
+        break;
       //Log kick-init version
       case '-v':
         console.log(pj.version);
