@@ -25,6 +25,7 @@ Drastically reduce the time it take to spin up a new project. Even with a starte
 - create your remote repo (with `-r` flag)
 - add remote repo to local project (with `-r` flag)
 - push up all files to new remote repo (with `-r` flag)
+- make you a better person (Beta)
 
 
 ## Install
