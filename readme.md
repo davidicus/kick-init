@@ -25,6 +25,7 @@ Drastically reduce the time it take to spin up a new project. Even with a starte
 - create your remote repo (with `-r` flag)
 - add remote repo to local project (with `-r` flag)
 - push up all files to new remote repo (with `-r` flag)
+- make you a better person (Beta)
 
 
 ## Install
@@ -47,22 +48,25 @@ $ kick --help
 
 
   Options:
-  -c, --clone           specify a repo URL to clone
+  -c, --clone           specify a random repo to clone
   -h, --help            print help menu
-  -l, --list            list starter repo options
+  -l, --list            print starter repo options
   -r, --remote          create a remote repo for this project
-  -v, --version         get current version of kick-init package
+  -v, --version         print current version of kick-init package
+  -V, --verbose         print out each command being executed
 
   [repo]                specify the repo to clone, defaults to first in list
 
 
   Examples
+    $ kick
+    will run kick-init with first repo listed in config and no remote repo
     $ kick -r
-    project a with remote repo
+    will run kick-init with first repo listed in config with remote repo
     $ kick b
-    project b with no remote repo
+    will run kick-init with b and no remote
     $ kick -c https://github.com/davidicus/myboilerplate.git
-    will run kick-init with the myboilerplate repo
+    will run kick-init with the myboilerplate repo and no remote
 
 ```
 
@@ -73,6 +77,8 @@ In order to get the full benefits of kick-init add a .kickconfig.json file to yo
 ```
 
 //.kickconfig.json
+
+//a, b, z below can be named anything you want to identify the repo
 
   {
     "repos": {
@@ -88,6 +94,8 @@ In order to get the full benefits of kick-init add a .kickconfig.json file to yo
 
 ```
 
+##Coming Soon!
+- Support for github enterprise
 
 
 ## License
