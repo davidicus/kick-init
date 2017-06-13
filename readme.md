@@ -11,8 +11,6 @@
 > Give your new project a kick!
 
 
-##What it do
-
 Drastically reduce the time it take to spin up a new project. Even with a starter boilerplate the time you spend setting it up for a new project can add up. With kick-init a single command will have your starter project up and running in a matter of minutes.
 
 *When used to full potential kick-init will:*
@@ -69,7 +67,6 @@ $ kick --help
     will run kick-init with the myboilerplate repo and no remote
 
 ```
-
 
 ##Config
 
