@@ -73,31 +73,35 @@ $ kick --help
 
 ##Config
 
-In order to get the full benefits of kick-init add a .kickconfig.json file to your root directory. There are two sections of the config. The **repos** property will list out all repos available to clone. The second property is **github**. Here you will list your username and personal access token. Check out how to get a personal access token [here](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/). Without the config file you will not be able to create a remote repo but can still start a local project. Get ta kickin!
+In order to get the full benefits of kick-init add a .kickconfig.json file to your root directory. Without the config file you will not be able to create a remote repo but can still start a local project.
+
+There are two sections of the config, **repos** and **github**. The **repos** property will list out all repos available to clone. You can list as many as you want and name them whatever you like. The second property, **github**, will list your username and personal access token. If you have an enterprise github instance you can add those credentials to be able to push to enterprise instead of public.
+
+Check out how to get a personal access token [here](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/).   Now, get ta kickin!
 
 ```
 
 //.kickconfig.json
 
-//a, b, z below can be named anything you want to identify the repo
+//a, build, z below can be named anything you want to identify the repo
 
   {
     "repos": {
       "a": "https://github.com/davidicus/react-app-starter.git",
-      "b": "https://github.com/davidicus/build-ignore-test.git",
+      "build": "https://github.com/davidicus/build-ignore.git",
       "z": "https://github.com/davidicus/build-ignore-test.git"
     },
     "github": {
-      "token": "yourToken",
-      "username": "yourUserName"
+      "token": "yourPersonalAccessToken",
+      "username": "yourUserName",
+      "ent_token": "yourEnterprisePersonalAccessToken",
+      "ent_username": "yourEnterpriseUserName",
+      "ent_hostname": "yourEnterpriseHostName"
     }
   }
 
 ```
 
-
-##Coming Soon!
-- Support for github enterprise
 
 
 ## License

@@ -8,14 +8,19 @@ dest="$2";
 remote="$3";
 #check for verbose flag
 verbose="$4";
+#check if using enterprise github instance
+enterprise="$5";
 #github personal access token for api
-token="$5";
+token="$6";
 #github username
-username="$6";
+username="$7";
+#enterprise github hostname
+hostname="$8";
 #orange color for printf
 orange="\033[1;33m";
 cyan="\033[1;31m";
 reset="\033[0m";
+
 
 
 if find "$dest" -mindepth 1 -print -quit | grep -q .; then
@@ -73,21 +78,39 @@ else
   # Check if remote repo is required
   if [ "$remote" = true ] ; then
 
-    #create remote repo
-    if [ "$verbose" = true ] ; then
-      printf "${cyan}Creating remote repo${reset}\n";
+    if [ "$enterprise" = true ] ; then
+      #create remote repo
+      if [ "$verbose" = true ] ; then
+        printf "${cyan}Creating remote repo${reset}\n";
+      fi
+      curl -u "$token:x-oauth-basic" https://$hostname/api/v3/user/repos -d "{\"name\":\"$project_name\",\"description\": \"Awesome project repo\"}";
+
+      wait
+
+      #add remote repo
+      if [ "$verbose" = true ] ; then
+        printf "${cyan}Add remote origin${reset}\n";
+      fi
+      git remote add origin "http://$username:$token@$hostname/$username/$project_name.git";
+
+      wait
+    else
+      #create remote repo
+      if [ "$verbose" = true ] ; then
+        printf "${cyan}Creating remote repo${reset}\n";
+      fi
+      curl -u "$token:x-oauth-basic" https://api.github.com/user/repos -d "{\"name\":\"$project_name\",\"description\": \"Awesome project repo\"}";
+
+      wait
+
+      #add remote repo
+      if [ "$verbose" = true ] ; then
+        printf "${cyan}Add remote origin${reset}\n";
+      fi
+      git remote add origin "http://github.com/$username/$project_name.git";
+
+      wait
     fi
-    curl -u "$token:x-oauth-basic" https://api.github.com/user/repos -d "{\"name\":\"$project_name\",\"description\": \"Awesome project repo\"}";
-
-    wait
-
-    #add remote repo
-    if [ "$verbose" = true ] ; then
-      printf "${cyan}Add remote origin${reset}\n";
-    fi
-    git remote add origin "http://github.com/$username/$project_name.git";
-
-    wait
 
     #push first commit
     if [ "$verbose" = true ] ; then
