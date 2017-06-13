@@ -85,11 +85,12 @@ const argsParser = (args) => {
         info = null;
         break;
 
+      //print out each command being run
       case '-V':
         info.verbose = true;
         break;
 
-      //Log kick-init version
+      //print out each command being run
       case '--verbose':
         info.verbose = true;
         break;
@@ -156,7 +157,7 @@ const argsParser = (args) => {
         }
     }
   });
-  
+
   return info;
 };
 
