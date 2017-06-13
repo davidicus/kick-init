@@ -1,6 +1,6 @@
 {
   "name": "kick-init",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "cli tool for getting your new project a kick start!",
   "main": "index.js",
   "repository": "https://github.com/davidicus/kick-init.git",
