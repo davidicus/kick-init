@@ -68,7 +68,7 @@ $ kick --help
 
 ```
 
-##Config
+## Config
 
 In order to get the full benefits of kick-init add a .kickconfig.json file to your root directory. Without the config file you will not be able to create a remote repo but can still start a local project.
 
