@@ -62,7 +62,14 @@ else
   if [ "$verbose" = true ] ; then
     printf "${cyan}Install dependencies${reset}\n";
   fi
-  npm install;
+
+  if which 'yarn' ;
+  then
+    yarn install
+  else
+    npm install;
+  fi
+
 
   #add files to git
   if [ "$verbose" = true ] ; then
