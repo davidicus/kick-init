@@ -1,31 +1,36 @@
-'use strict';
+"use strict";
 
-const fs = require('fs');
-const path = require('path');
-const pj = require('./package.json');
+const fs = require("fs");
+const path = require("path");
+const pj = require("./package.json");
 
 //configuration path
 const configPath = path.join(
-  (process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE),
-  '/.kickconfig.json'
+  process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE,
+  "/.kickconfig.json"
 );
 
 //check for config file. Use default if none found
-const repoList = (fs.existsSync(configPath)) ? require(configPath) : require('./repoInfo.json');
+const repoList = fs.existsSync(configPath)
+  ? require(configPath)
+  : require("./repoInfo.json");
 
 //check package version
-const version = require("./package.json").version;
+const version = pj.version;
 
 //get repo urls with property name
-const rawRepos = Object.keys(repoList.repos).map(repo => {
-  return `${repo}. ${repoList.repos[repo]}`;
-}).toString().replace(/,/g, "\n  ");
+const rawRepos = Object.keys(repoList.repos)
+  .map(repo => {
+    return `${repo}. ${repoList.repos[repo]}`;
+  })
+  .toString()
+  .replace(/,/g, "\n  ");
 
 //output for list flag
 const repos = `
   Starter Repo List:
   ${rawRepos}
-`
+`;
 
 //output for help flag
 const help = `
@@ -47,13 +52,10 @@ const help = `
   ${rawRepos}
 `;
 
-//regex checking for "-r"
-const regex = /^-r/g;
-
-const argsParser = (args) => {
-
+const argsParser = args => {
   //define the default info object
   let info = {
+    configPath,
     clone: repoList.repos[Object.keys(repoList.repos)[0]],
     local: process.cwd(),
     remote: false,
@@ -71,100 +73,66 @@ const argsParser = (args) => {
 
   //parse each argument
   args.map((arg, i) => {
-
     // if argument is passed serve up appropriate object
     switch (arg) {
-
       //use enterprise instance
-      case '-e':
+      case "-e":
+      case "--enterprise":
         info.enterprise = true;
         break;
 
-      //use enterprise instance
-      case '--enterprise':
-        info.enterprise = true;
-        break;
       //Log kick-init version
-      case '-v':
-        console.log(pj.version);
-        info = null;
-        break;
-
-      //Log kick-init version
-      case '--version':
-        console.log(pj.version);
+      case "-v":
+      case "--version":
+        console.log(version);
         info = null;
         break;
 
       //print out each command being run
-      case '-V':
-        info.verbose = true;
-        break;
-
-      //print out each command being run
-      case '--verbose':
+      case "-V":
+      case "--verbose":
         info.verbose = true;
         break;
 
       //Log out repo list
-      case '-l':
-        console.log(repos);
-        info = null;
-        break;
-
-      //Log out repo list
-      case '--list':
+      case "-l":
+      case "--list":
         console.log(repos);
         info = null;
         break;
 
       //user set repo to clone. Expected as next argument
-      case '-c':
-        info.clone = args[i + 1];
-        break;
-
-      //user set repo to clone. Expected as next argument
-      case '--clone':
+      case "-c":
+      case "--clone":
         info.clone = args[i + 1];
         break;
 
       //Log the help menu
-      case '-h':
-        console.log(help);
-        info = null;
-        break;
-
-      //Log the help menu
-      case '--help':
+      case "-h":
+      case "--help":
         console.log(help);
         info = null;
         break;
 
       //user called for remote repository to be created
-      case '-r':
+      case "-r":
+      case "--remote":
         info.remote = true;
         break;
 
-      //user called for remote repository to be created
-      case '--remote':
-        info.remote = true;
-        break;
       default:
-
         //check if argument exist in config file
         if (repoList.repos[arg]) {
-
           //since it does set it to be cloned
           info.clone = repoList.repos[arg];
         }
 
         //check if file path or url
-        else if (!arg.includes('://')) {
-
+        else if (!arg.includes("://")) {
           //if you made it to here you should be
           //a file path or url and you are not
-          console.log(`ERROR: ${arg} is not valid argument.`);
-          throw new Error;
+          console.error(`ERROR: ${arg} is not valid argument.`);
+          throw new Error();
         }
     }
   });

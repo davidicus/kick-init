@@ -2,18 +2,31 @@
   "name": "kick-init",
   "version": "1.1.0",
   "description": "cli tool for getting your new project a kick start!",
+  "license": "MIT",
+  "repository": "davidicus/kick-init.git",
+  "keywords": [
+    "boilerplate",
+    "project-starter",
+    "project-generator",
+    "generator"
+  ],
+  "bugs": {
+    "url": "https://github.com/davidicus/kick-init/issues"
+  },
+  "homepage": "https://github.com/davidicus/kick-init#readme",
+  "author": "David Conner <david@david-conner.com> (http://david-conner.com)",
+  "engines": {
+    "node": ">=8"
+  },
   "main": "index.js",
-  "repository": "https://github.com/davidicus/kick-init.git",
-  "author": {
-    "name": "David Conner",
-    "email": "david@david-conner.com",
-    "url": "https://github.com/davidicus/"
+  "scripts": {
+    "test": "jest"
   },
   "bin": {
     "kick": "cli.js"
   },
-  "engines": {
-    "node": ">=7"
-  },
-  "license": "MIT"
+  "dependencies": {},
+  "devDependencies": {
+    "jest": "^23.6.0"
+  }
 }
