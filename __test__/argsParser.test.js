@@ -86,14 +86,14 @@ test("Expect remote flags to return true for input.remote", () => {
 });
 
 /////////////////////////////////////////////
-// Test named repo from config
+// Test named repo from config -local test only
 /////////////////////////////////////////////
 
-test("Expect arg name to be found and configs and set as value for input.clone", () => {
-  expect(argsParser(["react"])).toMatchObject({
-    clone: "https://github.com/davidicus/react-app-starter.git"
-  });
-});
+// test("Expect arg name to be found and configs and set as value for input.clone", () => {
+//   expect(argsParser(["react"])).toMatchObject({
+//     clone: "https://github.com/davidicus/react-app-starter.git"
+//   });
+// });
 
 /////////////////////////////////////////////
 // Test default object
