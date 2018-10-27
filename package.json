@@ -1,6 +1,6 @@
 {
   "name": "kick-init",
-  "version": "1.2.1",
+  "version": "1.3.0",
   "description": "cli tool for getting your new project a kick start!",
   "license": "MIT",
   "repository": "davidicus/kick-init.git",
