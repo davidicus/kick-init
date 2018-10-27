@@ -29,6 +29,18 @@ _When used to full potential kick-init will:_
 $ npm i -g kick-init
 ```
 
+or
+
+```
+$ yarn add -g kick-init
+```
+
+or just use with npx to run without downloading
+
+```
+$ npx kick-init -V
+```
+
 ## CLI
 
 `kick` is the only necessary command to get started. All arguments and flags are optional. The repo defaults to the first one listed in the config file or the default if no config is present. kick-init defaults to not creating a remote repo but can be added with the `-r`flag.
