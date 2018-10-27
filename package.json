@@ -20,7 +20,7 @@
   },
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest --silent"
   },
   "bin": {
     "kick": "cli.js"

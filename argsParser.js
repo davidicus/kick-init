@@ -84,7 +84,7 @@ const argsParser = args => {
       //Log kick-init version
       case "-v":
       case "--version":
-        console.log(version);
+        console.log("\x1b[1m\x1b[37m%s\x1b[0m", version);
         info = null;
         break;
 
@@ -97,14 +97,22 @@ const argsParser = args => {
       //Log out repo list
       case "-l":
       case "--list":
-        console.log(repos);
+        console.log("\x1b[1m\x1b[37m%s\x1b[0m", repos);
         info = null;
         break;
 
       //user set repo to clone. Expected as next argument
       case "-c":
       case "--clone":
-        info.clone = args[i + 1];
+        if (typeof args[i + 1] == "string" && args[i + 1].includes(".git")) {
+          info.clone = args[i + 1];
+        } else {
+          console.error(
+            "\x1b[31m%s\x1b[0m",
+            `ERROR: ${args[i + 1]} is not valid argument following ${arg}.`
+          );
+          throw new Error();
+        }
         break;
 
       //Log the help menu
@@ -131,7 +139,10 @@ const argsParser = args => {
         else if (!arg.includes("://")) {
           //if you made it to here you should be
           //a file path or url and you are not
-          console.error(`ERROR: ${arg} is not valid argument.`);
+          console.error(
+            "\x1b[31m%s\x1b[0m",
+            `ERROR: ${arg} is not valid argument.`
+          );
           throw new Error();
         }
     }
@@ -140,4 +151,7 @@ const argsParser = args => {
   return info;
 };
 
-module.exports = argsParser;
+module.exports = {
+  argsParser,
+  repoList
+};

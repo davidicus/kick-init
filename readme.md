@@ -4,7 +4,7 @@
 
 </div>
 
-# kick-init [![npm](https://img.shields.io/npm/dt/kick-init.svg)]()
+# kick-init [![Build Status](https://travis-ci.org/davidicus/kick-init.svg?branch=master)](https://travis-ci.org/davidicus/kick-init) [![npm](https://img.shields.io/npm/dt/kick-init.svg)]()
 
 > Give your new project a kick!
 
